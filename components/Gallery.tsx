@@ -66,8 +66,8 @@ export default function Gallery() {
               style={{ animationDelay: `${i * 100}ms` }}
             >
               {"combined" in g
-                ? <CombinedCard {...g} />
-                : <BeforeAfter {...g} />
+                ? <CombinedCard combined={g.combined} label={g.label} />
+                : <BeforeAfter before={g.before} after={g.after} label={g.label} />
               }
             </div>
           ))}
