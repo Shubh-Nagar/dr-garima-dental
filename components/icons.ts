@@ -1,0 +1,33 @@
+import {
+  Anchor,
+  Sparkles,
+  AlignCenterVertical,
+  Sun,
+  Crown,
+  Smile,
+  Baby,
+  Scissors,
+  ShieldCheck,
+  Feather,
+  Cpu,
+  BadgeCheck,
+  Stethoscope,
+  type LucideIcon,
+} from "lucide-react";
+
+// Maps the string keys used in data/clinic.ts to real icon components.
+export const iconMap: Record<string, LucideIcon> = {
+  implant: Anchor,
+  root: Stethoscope,
+  braces: AlignCenterVertical,
+  whitening: Sun,
+  crown: Crown,
+  denture: Smile,
+  smile: Sparkles,
+  kids: Baby,
+  surgery: Scissors,
+  shield: ShieldCheck,
+  feather: Feather,
+  cpu: Cpu,
+  badge: BadgeCheck,
+};

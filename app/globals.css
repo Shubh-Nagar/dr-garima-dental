@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: 13 92 99;
+  --brand-dark: 8 58 64;
+  --brand-tint: 224 242 241;
+  --accent: 230 126 79;
+  --ink: 23 37 42;
+  --paper: 250 251 250;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  background: rgb(var(--paper));
+  color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5
+           text-sm font-semibold text-white shadow-soft transition
+           hover:brightness-110 hover:-translate-y-0.5
+           active:scale-[0.97] active:translate-y-0
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand/25 bg-white/70 px-6 py-3.5
+           text-sm font-semibold text-brand-dark transition
+           hover:border-brand/50 hover:bg-white hover:-translate-y-0.5
+           active:scale-[0.97] active:translate-y-0
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-medium leading-tight text-ink sm:text-4xl;
+  }
+}
+
+/* ─── Smile arc divider ────────────────────────────────────── */
+.smile-arc {
+  display: block;
+  width: 100%;
+  height: 48px;
+  color: rgb(var(--brand-tint));
+}
+
+/* ─── Scroll reveal (CSS animation approach) ─────────────────
+   Elements start invisible. When JS adds .in-view, a keyframe
+   animation plays. animation-delay (set via inline style for
+   stagger) never conflicts with CSS hover transitions.        */
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+}
+
+.reveal.in-view {
+  animation: rv-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-left.in-view {
+  animation: rv-slide-left 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-right.in-view {
+  animation: rv-slide-right 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-scale.in-view {
+  animation: rv-scale-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes rv-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-slide-left {
+  from { opacity: 0; transform: translateX(-44px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-slide-right {
+  from { opacity: 0; transform: translateX(44px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-scale-up {
+  from { opacity: 0; transform: scale(0.93) translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Ensure reveal elements are still visible */
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+  }
+}
