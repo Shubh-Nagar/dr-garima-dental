@@ -166,7 +166,10 @@ export const clinic = {
     { combined: "/images/before-after-1.png", label: "Smile makeover" },
     { combined: "/images/before-after-2.png", label: "Aligners" },
     { combined: "/images/before-after-3.png", label: "Implants" },
-  ],
+  ] as Array<
+    | { combined: string; label: string }
+    | { before: string; after: string; label: string }
+  >,
 
   // Paste real Google reviews here — this is the highest-trust section.
   testimonials: [
